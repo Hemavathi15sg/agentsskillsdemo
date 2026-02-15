@@ -149,4 +149,5 @@ See [references/quick-reference.md](references/quick-reference.md) for:
 - Copilot Spaces require a GitHub Copilot subscription
 - Space access depends on your GitHub organization's permissions
 - Not all IDE integrations support Spaces yet (check GitHub's documentation for the latest)
-- MCP server integration works in desktop environments (VS Code, Claude Desktop, CLI) but not on GitHub.com website
+- The web dashboard (github.com/copilot/spaces) allows full space management through the UI
+- MCP server tools for programmatic space access work in desktop environments (VS Code, Claude Desktop, CLI) but not through the GitHub.com website

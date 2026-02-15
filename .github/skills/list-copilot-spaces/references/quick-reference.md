@@ -138,14 +138,14 @@ Starred Spaces
 ## Environment Compatibility
 
 ### ✅ Where Spaces Work
-- **GitHub Web** (github.com/copilot/spaces) - Full management
-- **VS Code** - Full integration with GitHub MCP server
+- **GitHub Web Dashboard** (github.com/copilot/spaces) - Full space management via web UI (view, create, edit, delete spaces)
+- **VS Code** - Full integration with GitHub MCP server for programmatic access
 - **Claude Desktop** - With GitHub MCP server configured
 - **GitHub CLI** - With MCP integration
 - **IDEs with GitHub Copilot** - Check specific IDE support
 
 ### ⚠️ Limited Support
-- **GitHub.com website** - Only the dedicated Spaces dashboard at github.com/copilot/spaces is fully supported. General GitHub browsing doesn't provide space context.
+- **General GitHub.com browsing** - Space context is not available when browsing repositories or code on GitHub.com; you must use the dedicated Spaces dashboard
 
 ### ❌ Where Spaces Don't Work
 - **Legacy Copilot versions** - Update to latest version for full support
