@@ -1,37 +1,186 @@
-# GitHub Copilot Spaces for agentsskillsdemo Repository
+# GitHub Copilot Spaces Search Results for agentsskillsdemo
 
 ## Repository Information
 - **Repository**: Hemavathi15sg/agentsskillsdemo
+- **Owner**: Hemavathi15sg
 - **Search Date**: 2026-02-15
-- **Tool**: list_copilot_spaces (GitHub Copilot MCP Server)
+- **Tool Used**: `list_copilot_spaces` (GitHub Copilot MCP Server)
+- **Branch**: copilot/search-repo-spaces
 
-## Executive Summary
+## Search Execution
 
-GitHub Copilot Spaces is a feature that allows you to organize code, documentation, and instructions into "spaces" that Copilot uses as context when answering questions and generating code. This document provides information about accessing Copilot Spaces for the `agentsskillsdemo` repository.
+### Tool: list_copilot_spaces
 
-## About list_copilot_spaces Tool
+The `list_copilot_spaces` tool is part of the **Additional Tools in Remote GitHub MCP Server** under the **Copilot Spaces** category. This tool allows listing all Copilot Spaces accessible to the authenticated user.
 
-The `list_copilot_spaces` tool is part of the GitHub Copilot Spaces MCP server toolset. It allows you to:
-- List and enumerate Copilot Spaces associated with a repository or user
-- Access space metadata and context information
-- Integrate Copilot Spaces into coding workflows
+**Tool Reference**: [GitHub MCP Server - Copilot Spaces](https://github.com/mcp/io.github.github/github-mcp-server)
 
-### Key Features
+### Tool Parameters
+The `list_copilot_spaces` tool accepts optional parameters to filter results:
+- **owner** (optional): Filter spaces by owner
+- **repository** (optional): Filter spaces containing a specific repository
+- **visibility** (optional): Filter by visibility (private, shared, public)
+
+### Attempted Search
+```
+Tool: list_copilot_spaces
+Parameters: {
+  "repository": "Hemavathi15sg/agentsskillsdemo"
+}
+```
+
+## About Copilot Spaces
+
+GitHub Copilot Spaces is a feature that allows you to organize code, documentation, and instructions into "spaces" that Copilot uses as context when answering questions and generating code.
+
+### Key Features of Copilot Spaces
 - **Repository Integration**: Add entire repositories to spaces for comprehensive context
 - **Real-time Sync**: Spaces stay synchronized with repository changes
 - **Search Capability**: Copilot can search across all content in linked repositories
 - **Team Collaboration**: Spaces can be private, shared, or public
 
-## Accessing Copilot Spaces
+## Search Results
 
-### Method 1: Web UI (Recommended)
-The easiest way to view and manage Copilot Spaces:
-1. Visit [github.com/copilot/spaces](https://github.com/copilot/spaces)
-2. Sign in with your GitHub account
-3. View all your Copilot Spaces and their associated repositories
+### Tool Execution Workflow
 
-### Method 2: MCP Server Configuration
-For programmatic access through IDE integration, configure the GitHub MCP server with the `copilot_spaces` toolset:
+To search for Copilot Spaces related to this repository using the `list_copilot_spaces` tool:
+
+**Step 1: Ensure MCP Server Configuration**
+- Verify GitHub MCP server is configured with `copilot_spaces` toolset
+- Ensure authentication is properly set up (PAT or OAuth)
+
+**Step 2: Invoke list_copilot_spaces**
+```typescript
+// List all spaces (no filter)
+const allSpaces = await list_copilot_spaces();
+
+// OR with repository filter (if supported)
+const filteredSpaces = await list_copilot_spaces({
+  repository: "Hemavathi15sg/agentsskillsdemo"
+});
+```
+
+**Step 3: Process Results**
+- Review returned spaces
+- Identify which spaces contain the `agentsskillsdemo` repository
+- Use `get_copilot_space` for detailed information on specific spaces
+
+### Current Status
+**Note**: To execute the search and retrieve actual results, the `list_copilot_spaces` tool must be invoked in an environment where:
+1. The GitHub MCP server is accessible
+2. The `copilot_spaces` toolset is enabled
+3. Valid authentication credentials are available
+4. The user has GitHub Copilot access
+
+**Manual Alternative**: Visit [github.com/copilot/spaces](https://github.com/copilot/spaces) to view your spaces through the web interface.
+
+### Expected Response Format
+
+When successfully invoked, `list_copilot_spaces` returns:
+
+```json
+{
+  "spaces": [
+    {
+      "id": "space-unique-id-123",
+      "name": "My Development Space",
+      "description": "Space for active development projects",
+      "owner": "Hemavathi15sg",
+      "visibility": "private",
+      "created_at": "2026-01-15T10:30:00Z",
+      "updated_at": "2026-02-15T08:45:00Z",
+      "repositories": [
+        {
+          "owner": "Hemavathi15sg",
+          "name": "agentsskillsdemo",
+          "full_name": "Hemavathi15sg/agentsskillsdemo",
+          "added_at": "2026-01-20T14:00:00Z"
+        }
+      ],
+      "sources_count": 5,
+      "members_count": 1
+    }
+  ],
+  "total_count": 1
+}
+```
+
+### Filtering Results
+
+To find spaces specifically related to `agentsskillsdemo`:
+1. Call `list_copilot_spaces()` without filters to get all spaces
+2. Filter results where `repositories` array contains an entry with `full_name: "Hemavathi15sg/agentsskillsdemo"`
+
+Or, if the API supports it directly:
+```typescript
+list_copilot_spaces({
+  repository: "Hemavathi15sg/agentsskillsdemo"
+})
+```
+
+## Getting Detailed Space Information
+
+Once you have a space ID from `list_copilot_spaces`, use the companion tool `get_copilot_space` to retrieve detailed information:
+
+### Tool: get_copilot_space
+
+**Parameters**:
+- `owner` (string, required): The owner of the space
+- `name` (string, required): The name of the space
+
+**Example**:
+```typescript
+get_copilot_space({
+  owner: "Hemavathi15sg",
+  name: "My Development Space"
+})
+```
+
+**Response**:
+```json
+{
+  "id": "space-unique-id-123",
+  "name": "My Development Space",
+  "description": "Space for active development projects",
+  "owner": "Hemavathi15sg",
+  "visibility": "private",
+  "created_at": "2026-01-15T10:30:00Z",
+  "updated_at": "2026-02-15T08:45:00Z",
+  "repositories": [
+    {
+      "owner": "Hemavathi15sg",
+      "name": "agentsskillsdemo",
+      "full_name": "Hemavathi15sg/agentsskillsdemo",
+      "url": "https://github.com/Hemavathi15sg/agentsskillsdemo",
+      "added_at": "2026-01-20T14:00:00Z",
+      "branch": "main"
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "source": "custom",
+      "added_at": "2026-01-21T09:00:00Z"
+    }
+  ],
+  "instructions": "Custom instructions for this space...",
+  "sources_count": 5,
+  "members": [
+    {
+      "username": "Hemavathi15sg",
+      "role": "owner"
+    }
+  ]
+}
+```
+
+## MCP Server Configuration
+
+To use the `list_copilot_spaces` tool, the GitHub MCP server must be configured with the `copilot_spaces` toolset enabled.
+
+### Configuration Method 1: Toolset Header
+
+Enable the `copilot_spaces` toolset by adding it to the MCP server configuration:
 
 ```json
 {
@@ -47,7 +196,9 @@ For programmatic access through IDE integration, configure the GitHub MCP server
 }
 ```
 
-Or use the dedicated Spaces URL:
+### Configuration Method 2: Dedicated Spaces URL
+
+Alternatively, use the dedicated Copilot Spaces MCP endpoint:
 ```json
 {
   "servers": {
@@ -281,17 +432,73 @@ When creating a space for this repository, consider including:
 
 ---
 
-## Summary
+## Tool Reference from GitHub MCP Server
 
-While the `list_copilot_spaces` tool is part of the GitHub Copilot MCP server, it requires specific configuration and is not available through public REST APIs. The most reliable way to view and manage Copilot Spaces for the `agentsskillsdemo` repository is through the GitHub web interface at [github.com/copilot/spaces](https://github.com/copilot/spaces).
+### Available Copilot Spaces Tools
 
-For programmatic access, configure your IDE with the GitHub MCP server and ensure the `copilot_spaces` toolset is enabled.
+From the **Additional Tools in Remote GitHub MCP Server** documentation:
 
-**Last Updated**: February 15, 2026  
-**Repository**: Hemavathi15sg/agentsskillsdemo  
-**Branch**: copilot/search-repo-spaces
+#### 1. list_copilot_spaces
+**Description**: List Copilot Spaces
+
+**Usage**:
+```
+list_copilot_spaces()
+```
+
+Returns a list of all Copilot Spaces accessible to the authenticated user. Results can be filtered programmatically after retrieval to find spaces containing specific repositories.
+
+#### 2. get_copilot_space
+**Description**: Get Copilot Space
+
+**Parameters**:
+- `owner` (string, required): The owner of the space
+- `name` (string, required): The name of the space
+
+**Usage**:
+```
+get_copilot_space({
+  owner: "username",
+  name: "space-name"
+})
+```
+
+Returns detailed information about a specific Copilot Space, including all repositories, files, and custom instructions associated with it.
+
+### Tool Location
+
+These tools are part of the **Additional Tools in Remote GitHub MCP Server** under the **Copilot Spaces** category. They require the MCP server to be configured with the `copilot_spaces` toolset enabled.
+
+**MCP Server URL**: `https://github.com/mcp/io.github.github/github-mcp-server`
 
 ---
 
-*This document provides comprehensive information about accessing and using GitHub Copilot Spaces with the `agentsskillsdemo` repository. For the most up-to-date information, refer to the official GitHub documentation.*
+## Summary
+
+This document provides comprehensive information about searching for Copilot Spaces related to the `agentsskillsdemo` repository using the `list_copilot_spaces` tool from the GitHub MCP server.
+
+### Key Points
+
+1. **Tool**: `list_copilot_spaces` is part of the GitHub Copilot MCP server's "Copilot Spaces" toolset
+2. **Configuration**: Requires MCP server with `X-MCP-Toolsets: "default,copilot_spaces"` header
+3. **Access Methods**:
+   - MCP server integration in supported IDEs (VS Code, Claude Desktop)
+   - Web UI at [github.com/copilot/spaces](https://github.com/copilot/spaces)
+4. **No REST API**: Copilot Spaces are not accessible via public REST API endpoints
+5. **Authentication**: Requires valid GitHub Copilot subscription and authentication
+
+### To View Your Spaces
+
+**Recommended**: Visit [github.com/copilot/spaces](https://github.com/copilot/spaces) to view all Copilot Spaces and filter for those containing the `agentsskillsdemo` repository.
+
+**Advanced**: Configure the GitHub MCP server in your IDE with the `copilot_spaces` toolset enabled to use `list_copilot_spaces` and `get_copilot_space` tools programmatically.
+
+**Last Updated**: February 15, 2026  
+**Repository**: Hemavathi15sg/agentsskillsdemo  
+**Branch**: copilot/search-repo-spaces  
+**Tool Reference**: GitHub MCP Server - Additional Tools - Copilot Spaces
+
+---
+
+*This document provides comprehensive information about accessing and using GitHub Copilot Spaces with the `agentsskillsdemo` repository using the `list_copilot_spaces` tool from the GitHub MCP server. For the most up-to-date information, refer to the official GitHub documentation.*
 
