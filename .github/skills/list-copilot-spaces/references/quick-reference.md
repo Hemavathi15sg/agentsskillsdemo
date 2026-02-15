@@ -144,9 +144,11 @@ Starred Spaces
 - **GitHub CLI** - With MCP integration
 - **IDEs with GitHub Copilot** - Check specific IDE support
 
+### ⚠️ Limited Support
+- **GitHub.com website** - Only the dedicated Spaces dashboard at github.com/copilot/spaces is fully supported. General GitHub browsing doesn't provide space context.
+
 ### ❌ Where Spaces Don't Work
-- **GitHub.com website** (general browsing) - Limited to dashboard only
-- **Legacy Copilot versions** - Update to latest version
+- **Legacy Copilot versions** - Update to latest version for full support
 - **Unsupported IDEs** - Check GitHub documentation for supported editors
 
 ## Useful Links

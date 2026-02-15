@@ -141,7 +141,7 @@ See [references/quick-reference.md](references/quick-reference.md) for:
 ## Related Documentation
 
 - [About GitHub Copilot Spaces](https://docs.github.com/en/copilot/concepts/context/spaces)
-- [Using GitHub Copilot Spaces](https://docs.github.com/en/copilot/how-tos/provide-context/use-copilot-spaces/use-copilot-spaces)
+- [Using GitHub Copilot Spaces](https://docs.github.com/en/copilot/how-tos/provide-context/use-copilot-spaces)
 - [GitHub Copilot Spaces Blog](https://github.blog/ai-and-ml/github-copilot/github-copilot-spaces-bring-the-right-context-to-every-suggestion/)
 
 ## Notes
